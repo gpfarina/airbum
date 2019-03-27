@@ -1,0 +1,53 @@
+**********************
+     _    ___ ____  
+    / \  |_ _|  _ \ 
+   / _ \  | || |_) |
+  / ___ \ | ||  _ < 
+ /_/   \_\___|_| \_\
+                  
+  ____  _   _ __  __ 
+ | __ )| | | |  \/  |
+ |  _ \| | | | |\/| |
+ | |_) | |_| | |  | |
+ |____/ \___/|_|  |_|
+         
+      - 1.0 -
+
+
+******* INFO *********
+
+Project of:
+ LabProgrammazione,
+ University of Bologna
+   Year 2008
+
+Developed with:
+ Eclipse3.2+SVN+jdk6.0
+
+Using libvorbisspi
+ with licence LGPL:
+  www.javazoom.net/\
+  vorbisspi/\
+  vorbisspi.html
+
+
+****** LICENCE *******
+
+This game comes with
+GPL Licence:
+ http://www.gnu.org/\
+ licenses/gpl-2.0.txt
+
+
+****** CREDITS *******
+
+Davide Riccardo Caliendo,
+    stack@inventati.org
+
+Gianpietro Farina,
+    sh0t@the-root.org
+
+Alessandro Franci,
+    alex@the-root.org
+
+    

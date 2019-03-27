@@ -1,0 +1,144 @@
+COMPONENTI DEL GRUPPO:
+Il progetto AIRBUM è stato sviluppato dai seguenti studenti: 
+Davide Riccardo Caliendo, Gianpietro Farina, Alessandro Franci.
+----------------------------------------------------------------------------------
+DESCRIZIONE GENERALE DEL PROGRAMMA:
+Una volta lanciato AIRBUM si aprirà una finestra in cui sono presenti 4 pulsanti:
+Start Game, Impostazioni, About, Exit.
+
+Exit: 			Causa la terminazione del programma.
+About:			Mostrerà una piccola finestra bloccante di about in cui verranno mostrate con
+				del testo a scorrimento verticale alcune informazioni riguardo ai programmi 
+				che si sono utilizzati per lo sviluppo del progetto, e informazioni relative 
+				agli autori di quest'ultimo. Clickando su Ok sarà possibile chiudere la finestra
+				di dialogo.
+Impostazioni:	Cambierà il pannello principale della finestra di gioco nel pannello impostazioni.
+				Attraverso questo pannello sarà possibile settare alcune impostazioni generali del gioco
+				come per esempio: grandezza della finestra di gioco, presenza/assenza effetti audio, 
+				l'intervallo in millisecondi fra un colpo e un altro (nel caso si utilizzi una salva di colpi 
+				con più di un proiettile), il limite di tempo totale per lo sparo dei colpi. 
+				Quest'ultima opzione è utile nel caso si stia utilizzando una strategia con più di un 
+				colpo e la velocità di lancio sia alta, e non si abbia la pazienza di aspettare la caduta
+				 di tutti i proiettili. 
+Start Game:     Clickandoci apparirà una piccola finestra di dialogo che permetterà l'input dei dati 
+				sull'utente. Clickando successivamente su Ok, apparirà il vero e proprio pannello per 
+				giocare. La finestra è ora suddivisa in due parti (inferiore e superiore).
+				Nella superiore vi è disegnato uno sfondo con l'aereo e il cannone.
+				La parte inferiore gestisce l'input dell'utente. È possibile inserire la velocità e l'angolo 
+				iniziali del colpo attraverso dei textfield (su cui verrà effettuato un test sui dati
+				che contengono). Se si preme il pulsante SPARA senza definire una strategia partirà un singolo colpo 
+				con i dati dei textfield. E' possibile altrimenti definire delle strategie: 
+				Strategia-> Numero Colpi e Strategia->Tattica Sparo.
+				E' possibile per esempio modificare	il numero di colpi da sparare. 
+				Se il numero di colpi è maggiore di uno sarà possible definire per ognuno di questi (eccetto il primo) 
+				anche delle variazioni rispetto ai valori inseriti nel textfield. Sarà inoltre possibile salvare 
+				strategie per un successivo utilizzo, e caricarne di precedenti. 
+				Clickando su Tipo Velivolo sarà possibile definire la forma del velivolo (simbolica, statica, animata)
+				Nell'ultima voce della barra (Menu) si troveranno le voci: 
+				Punteggi: che permette la visualizzazione dei 10 maggiori punteggi realizzati.	
+				Esci:	che permette il ritorno alla finestra principale del programma.								
+
+------------------------------------------------------------------------------------------------------------
+FEATURE AGGIUNTIVE RISPETTO ALLE SPECIFICHE:
+Per gestire in modo più efficiente i suoni si è deciso di utilizzare
+una libreria esterna a quelle standard di java. La libreria è vorbisspi.
+Questa scelta è stata necessaria poichè altrimenti non sarebbe stato possibile
+gestire file con un formato diverso dal .wav, notevolmente pesanti rispetto per 
+esempio a file in decodifica .ogg (facilmente gestibili con questa libreria).
+Per maggiori informazioni riguardo alla libreria vorbisspi consigliamo di visitare:  
+				http://www.javazoom.net/vorbisspi/vorbisspi.html
+
+Rispetto alle specifiche il gioco permette il salvataggio/caricamento di strategie.
+In più il gioco permette l'impostazione di alcuni parametri di gioco generali (vedi Impostazioni).
+Inoltre il programma utilizza un LookAndFeel particolare definito dagli autori del progetto attraverso un file .xml
+questo stile si chiama synth ed è stato creato partendo dallo stile base synthLookAndFeel di java, 
+ma cambiando rispetto a quest'ultimo molte cose.
+Lo stile synth è definito nel file synth.xml
+------------------------------------------------------------------------------------------------------------
+DESCRIZIONE GENERALE DELLE CLASSI DEL PROGETTO:
+MyGeneralJPanel: 		Da questa classe ereditano tutti i pannelli utilizzati dal programma.
+MyPanelIniziale:		Estende MyGeneralJPanel, e serve per accedere ai vari pannelli del gioco.
+MyPanelAnimazioni: 		Estende MyGeneralJPanel, contiene le animazioni e i disegni del gioco.
+MyPanelOptions:	   		Estende MyGeneralJPanel, gestisce l'interfaccia con l'utente.
+OggettoInMovimento: 	Classe astratta che rappresenta un generico oggetto in movimento (aereo, proiettile).
+Proiettile:				Estende OggettoInMovimento e rappresenta un proiettile in moto.
+Velivolo:				Estende OggettoInMovimento e rappresenta il velivolo nell'aerea grafica.
+TraiettoriaAbstract: 	Classe astratta che rappresenta una generica traiettoria (di proeittile o aereo).
+TraiettoriaVelivolo: 	Estende TraiettoriaAbstract e rappresenta la traiettoria di un velivolo.
+						Gestisce sia la traiettoria per il bouce che quella orizzontale uniforme del velivolo.
+TraiettoriaProiettile: 	Estende TraiettoriaAbstract e rappresenta la traiettoria di un proiettile.
+						Traiettoria calcolata con eulero in avanti.
+						
+		NB Riguardo i calcoli delle traiettorie si è scelto di non calcolare a priori tutti i punti
+		della traiettoria, ma di calcolarne uno alla volta su richiesta tramite un metodo (getSucc), per una
+		maggiore flessibilità della classe.
+		
+Cannone:				Gestisce la rappresentazione e la rotazione del cannone.
+Punteggio:				Rappresenta il punteggio di un giocatore.
+Strategia:				Rappresenta una generica strategia di gioco.
+Settings:				Rappresenta un insieme di valori che definiscono le impostazioni generali del gioco.
+ToFile:					Classe astratta che definisce i metodi comuni a tutte le classi che devono 
+						essere serializzate/deserializzate. Si noti che come path per il salvataggio è usata 
+						una directory nella home dell'utente (sotto linux ~/.airbum )
+GestioneStrategia:		Estende ToFile e gestisce le strategie del giocatore e il loro caricamento/salvataggio.
+GestionePunteggi:		Estende ToFile e gestisce il caricamento/salvataggio/aggiornamento dei punteggi. 
+GestioneSettaggiGenerali:Estende ToFile e gestisce il caricamento/salvataggio delle impostazioni generali.
+Impact:					Gestisce il check delle collisioni.
+GestioneErrori:			Classe statica per la gestione degli errori/eccezioni.
+MyAudioPlayer:			Implementa l'interfaccia Runnable, e gestisce i suoni del gioco.
+MyDialogAbout:			Estende JDialog e gestisce l'about del programma.
+MyDialogInputPlayer:	Estende JDialog e gestisce l'input del nome e del cognome del giocatore.
+MyDialogPunteggi:		Estende JDialog e gestisce la visualizzazione dei 10 migliori punteggi realizzati.
+MyDialogStrategie:		Estende JDialog e gestisce la creazione/caricamento/salvataggio delle strategie dell'utente.
+WindowGame:				Estende JFrame. Imposta il lookandfeel generale del programma.
+Main:					L'entry point del programma
+----------------------------------------------------------------------------------------------------------
+
+GUIDA ALLA COMPILAZIONE/ESECUZIONE DEL PROGETTO:
+
+- Per compilare il progetto dare il comando:
+
+		make
+		
+	se si dispone delle make utils;
+	altrimenti usare:
+	
+		javac -sourcepath src src/Main.java -d bin -source 5 -encoding UTF-8
+		
+		(da notare che è stato usato utf-8)
+		
+- AIRBUM va' lanciato fuori dalla cartella bin/ con il comando:
+
+		./airbum.sh 
+
+ (ricordarsi di eseguire un chmod +x airbum.sh nel caso lo script non avesse i permessi di esecuzione)		
+ 
+			oppure con
+		java -cp bin/:resources/:lib/vorbis/* Main
+		
+	in modo che le resources vengano viste correttamente.
+
+- È anche possibile creare un file jar con il comando:
+		
+		make jarfile
+	
+Il quale fa uso di bash e di uno script (createjar.sh)
+ per scompattare le librerie vorbisspi e creare poi il file jar
+		
+_N.B.:_
+	In ambiente windows usare il comando: java -cp .\bin;.\resources;.\resources\vorbis\* Main
+	
+_N.B.:_ 
+	La propria home deve poter essere scrivibile nel path ~/.airbum/ per i settaggi generali di gioco
+	e per i punteggi.
+------------------------------------------------------------------------------------------------
+BUG NOTI:
+- Riguardo l'interfaccia grafica si precisa che java ha un bug riguardo la gestione con il window
+	manager, quindi con gestori tipo fluxbox l'effetto visivo potrebbe essere leggermente
+	differente che con metacity (gnome) o altri.
+	L'interfaccia è stata quindi resa soprattutti compatibile con la gestione, da parte di java, dei
+	windows manager metacity e il gestore di finestre di Windows.
+- Riguardo alla gestione dei suoni si avvisa che la riproduzione di uno stream audio risulterà bloccante in 
+    caso di assenza del mixing-hardware. Ciò è dovuto al fatto che Java/AudioSystem richiede che la linea 
+    audio sia totalmente libera al momento della riproduzione di uno stream audio.
+  	

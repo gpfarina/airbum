@@ -1,0 +1,286 @@
+<synth>
+
+  <!-- 
+  ****************************************************
+  Stile generela per quelle componenti non specificate
+  **************************************************** -->
+  <style id="defStyle">
+    <!-- Make all the regions opaque   -->
+  	<opaque value="TRUE"/>
+    <font name="Dialog" size="14"/>
+    <state>
+      <color value="BLACK" type="FOREGROUND"/> 
+    </state>
+  </style>
+  <bind style="defStyle" type="region" key=".*"/>
+  
+  <!-- 
+  ****************************************************
+  TEXTFIELD
+  **************************************************** -->
+  <style id="textfield">
+    <insets top="4" left="6" bottom="4" right="6"/>
+    <state>
+    
+       <imagePainter method="textFieldBorder" path="images/textfield.png"
+                  sourceInsets="4 6 4 6" paintCenter="false"/>
+       <font name="Verdana" size="14"/>
+       <color value="#D2DFF2" type="BACKGROUND"/>       
+       <color value="#000000" type="TEXT_FOREGROUND"/>
+    </state>
+    <state value="SELECTED">
+	    <color value="#a3aebd" type="TEXT_BACKGROUND"/>       
+    </state>
+    <state value="DISABLED">
+     	<color value="#7b7b7b" type="BACKGROUND"/>
+    	<imagePainter method="textFieldBorder" path="images/textfield_disabled.png"
+                  sourceInsets="4 6 4 6" paintCenter="false"/>
+    </state>
+    <state value="DISABLED AND SELECTED">
+    	<color value="#7b7b7b" type="TEXT_BACKGROUND"/>
+    	<imagePainter method="textFieldBorder" path="images/textfield_disabled.png"
+                  sourceInsets="4 6 4 6" paintCenter="false"/>
+    </state>
+  </style>
+  <bind style="textfield" type="region" key="TextField"/>
+  
+  
+  <!-- 
+  ****************************************************
+  BUTTONS
+  **************************************************** -->  
+  <style id="button">
+  	<!-- Shift the text one pixel when pressed -->
+    <property key="Button.textShiftOffset" type="integer" value="1"/>
+	  <!-- set size of buttons -->
+	  <insets top="10" left="20" bottom="15" right="20"/>
+    <state>
+	    <imagePainter method="buttonBackground" path="images/button.png"
+	                  sourceInsets="10 10 10 10" />
+	    <font name="Dialog" size="14"/>
+	    <color type="TEXT_FOREGROUND" value="#FFFFFF"/>
+    </state>
+              
+	  <state value="PRESSED"> 
+	    <imagePainter method="buttonBackground"
+		         path="images/button_press.png"
+	                  sourceInsets="10 10 10 10" />
+	  </state>
+            
+    <state value="MOUSE_OVER">    
+	    <imagePainter method="buttonBackground"
+		         path="images/button_over.png"
+	                 sourceInsets="10 10 10 10" />
+	  </state>
+	<state value="DISABLED">
+		<imagePainter method="buttonBackground"
+		         path="images/button_disabled.png"
+	                 sourceInsets="10 10 10 10" />
+	</state>
+  </style>
+  <bind style="button" type="region" key="Button"/>
+      
+  
+  <!-- 
+  ****************************************************
+  CHECKBOX
+  **************************************************** -->    
+  <style id="checkbox">
+    <imageIcon id="check_off" path="images/checkbox_off.png"/>
+    <imageIcon id="check_on" path="images/checkbox_on.png"/>
+    <property key="CheckBox.icon" value="check_off"/>
+    <state value="SELECTED">   
+      <property key="CheckBox.icon" value="check_on"/>
+	  </state>
+  </style>
+  <bind style="checkbox" type="region" key="Checkbox"/>	 
+  
+  
+  <!-- 
+  ****************************************************
+  MENU
+  **************************************************** -->
+   <style id="menu">
+	  <imagePainter method="menuBackground" path="images/menubar.png"
+	                  sourceInsets="0 0 0 0" paintCenter="true"/>
+		<insets top="2" left="2" bottom="3" right="0"/>
+	  	
+	  	<opaque value="true" />
+	  	<imageIcon id="arrowIcon" path="images/arrow.png" />
+	    <imageIcon id="arrowIcon_disabled" path="images/arrow_disabled.png" />
+	  	<state>
+	  		
+	  		<Property key="menu.iconGap" value="arrowIcon"/>   
+		    <color type="BACKGROUND" value="#79ff9b" />
+		    <color type="TEXT_FOREGROUND" value="#000000" />
+		    <property key="Menu.arrowIcon" value="arrowIcon"/>
+		</state>	
+		<state value="SELECTED">	
+				<imagePainter method="menuBackground" path="images/menuselected.png"
+		                  sourceInsets="0 0 0 0" paintCenter="true"/>
+		</state>
+		<state value="DISABLED">
+			<property key="Menu.arrowIcon" value="arrowIcon_disabled"/>
+			<color type="TEXT_FOREGROUND" value="#636363" />
+		</state> 
+	</style>
+  	<bind style="menu" type="region" key="menu" />
+ 
+  <!-- 
+  ****************************************************
+  MENUITEM
+  **************************************************** -->
+	<style id="menuItem">
+		<opaque value="true" />
+		<font name="Verdana" size="12"/>
+		<insets top="2" left="2" bottom="1" right="0"/>
+		<defaultsProperty key="menuItem.icon.width" type="integer" value="16"/>
+	    <defaultsProperty key="menuItem.checkRadioIcon.width" type="integer" value="16"/>
+	    
+	    <imageIcon id="radioButtonIconDefault" path="images/radioButton.png"/>
+		<imageIcon id="radioButtonIconSelected" path="images/radioButton_selected.png"/>
+		<imageIcon id="radioButtonIconDisabled" path="images/radioButton_disabled.png"/>
+		<imageIcon id="radioButtonIconDisabledAndSelected" path="images/radioButtonIcon_disabledSelected.png"/>
+	  
+		<state>
+	      	<color type="BACKGROUND" value="#79ff9b" />
+	   	 	<color type="TEXT_FOREGROUND" value="#000000" />
+	      <property key="RadioButtonMenuItem.checkIcon" value="radioButtonIconDefault"/>
+	      <defaultsProperty key="menuItem.insets" type="insets" value="5 5 5 5"/> 
+	    </state>
+	
+	    <state value="SELECTED">
+	      <color type="TEXT_FOREGROUND" value="#333333" />
+	      <property key="RadioButtonMenuItem.checkIcon" value="radioButtonIconSelected"/>
+	    </state>
+	
+	    <state value="MOUSE_OVER and SELECTED">
+	      <property key="RadioButtonMenuItem.checkIcon" value="radioButtonIconSelected"/>
+		  <imagePainter method="RadioButtonMenuItemBackground" path="images/menuselected.png"
+	                  sourceInsets="0 0 0 0" paintCenter="true"/>
+	    </state>
+		 <state value="MOUSE_OVER">
+	     
+		  <imagePainter method="MenuItemBackground" path="images/menuselected.png"
+	                  sourceInsets="0 0 0 0" paintCenter="true"/>
+	      <imagePainter method="RadioButtonMenuItemBackground" path="images/menuselected.png"
+	                  sourceInsets="0 0 0 0" paintCenter="true"/>
+	      <imagePainter method="MenuBackground" path="images/menuselected.png"
+	                  sourceInsets="0 0 0 0" paintCenter="true"/>
+	    </state>
+	    
+	    <state value="DISABLED">
+	      <property key="RadioButtonMenuItem.checkIcon" value="radioButtonIconDisabled"/>
+	      <color type="TEXT_FOREGROUND" value="#636363" />
+	    </state>
+	
+	    <state value="DISABLED AND SELECTED">
+	  	  <color type="TEXT_FOREGROUND" value="#AAAAAA" /> 
+	      <color type="BACKGROUND" value="#F3F3F3" />
+	      <property key="RadioButtonMenuItem.checkIcon" value="radioButtonIconDisabledAndSelected"/>	    
+	    </state>
+	</style>
+  	<bind style="menuItem" type="region" key="MenuItem"/>
+  	<bind style="menuItem" type="region" key="RadioButtonMenuItem"/>
+  
+  
+  <!-- 
+  ****************************************************
+  MENUBAR
+  **************************************************** -->
+  	<style id="menuBar">
+  	<string id="menuBarBackground">images/menubar.png</string>
+  	<defaultsProperty key="menuBar.background.active" type="idref" value="menuBarBackground"/>
+  	
+    <state>
+      <opaque value="true" />
+      <imagePainter method="menuBarBackground" path="images/menubar.png"
+                  sourceInsets="0 0 0 0" paintCenter="true"/>
+
+    </state>
+    <state value="MOUSE_OVER">	
+			<color type="BACKGROUND" value="#00d79e" />
+		</state>
+  </style>
+  <bind style="menuBar" type="region" key="MenuBar"/>
+   
+  <!-- 
+  ****************************************************
+  POPUPMENU (Da oggi con il 20% di ombra in piu' :) )
+  **************************************************** -->
+   <style id="popupMenu">
+   <state>
+      <opaque value="false" />
+       <insets top="0" left="0" bottom="12" right="12"/>
+    <property key="Separator.thickness" type="integer" value="2"/>   
+      <imagePainter method="popupMenuBackground" path="images/popup_shape.png"
+                  sourceInsets="0 0 0 0" paintCenter="true"/>
+      <color type="BACKGROUND" value="#79ff9b" />
+    </state>
+    
+   </style>
+  <bind style="popupMenu" type="region" key="PopupMenu"/>
+  
+  <!-- 
+  ****************************************************
+  LABEL
+  **************************************************** -->
+    <style id="label">
+	<opaque value="TRUE"/>
+	<state>
+		<imagePainter method="labelBackground" path="images/label.png"
+	                  sourceInsets="0 0 0 0" paintCenter="true"/>
+    	<insets top="2" left="8" bottom="4" right="1"/>
+    </state>
+    <state value="DISABLED">
+    	<color value="#7b7b7b" type="TEXT_FOREGROUND"/>
+    	<imagePainter method="labelBackground" path="images/label_disabled.png"
+	                  sourceInsets="0 0 0 0" paintCenter="true"/>
+    	
+    </state>
+  </style>
+  <bind style="label" type="region" key="Label"/>
+
+  <!-- 
+*******************************************************************************
+Separator
+*******************************************************************************
+-->
+  <style id="separator">
+    <property key="Separator.thickness" type="integer" value="2"/>
+    <state>
+      <opaque value="false" />
+ 	 
+	  <imagePainter method="separatorForeground" path="images/separatorX.png"
+	                  sourceInsets="4 6 4 6" paintCenter="true"/>	  
+      <defaultsProperty key="separator.image.insets" type="insets" value="0 0 0 0"/>
+    </state>
+  </style>
+  <bind style="separator" type="region" key="Separator"/>
+  <bind style="separator" type="region" key="PopupMenuSeparator"/>
+
+  
+   <!-- 
+*******************************************************************************
+TOOLTIP
+*******************************************************************************
+-->
+ 
+  <style id="toolTip">
+    <insets top="3" left="3" bottom="7" right="7"/>
+
+    <state>
+      <imagePainter method="toolTipBackground" path="images/menubar.png"
+                  sourceInsets="0 0 0 0" paintCenter="true"/>
+
+     <opaque value="true" />
+    </state>
+
+    <state value="DISABLED">
+  	  <color type="TEXT_FOREGROUND" value="#333333" /> 
+    </state>
+  </style>
+  <bind style="toolTip" type="region" key="ToolTip"/>
+ 
+ 
+</synth>
